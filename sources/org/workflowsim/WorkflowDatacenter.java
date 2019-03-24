@@ -131,10 +131,12 @@ public class WorkflowDatacenter extends Datacenter {
             double fileTransferTime = 0.0;
             if (job.getClassType() == ClassType.COMPUTE.value) {
                 fileTransferTime = processDataStageInForComputeJob(job.getFileList(), job);
+                job.setFileTransferTime(fileTransferTime);
             }
 
             CloudletScheduler scheduler = vm.getCloudletScheduler();
             double estimatedFinishTime = scheduler.cloudletSubmit(job, fileTransferTime);
+            job.setEstimatedFinishTime(estimatedFinishTime);
             updateTaskExecTime(job, vm);
 
             // if this cloudlet is in the exec queue

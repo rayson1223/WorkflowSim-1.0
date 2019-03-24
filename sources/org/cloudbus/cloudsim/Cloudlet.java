@@ -91,6 +91,31 @@ public class Cloudlet {
 	/** The ToS for sending Cloudlet over the network. */
 	private int netToS;
 
+	/*
+	 * The total makespan of the task took
+	 */
+	private double makespan;
+
+	/*
+	 * The queue delay in the Scheduler for a task
+	 */
+	private double queueDelay;
+
+	/*
+	 * The post delay for a task after it done
+	 */
+	private double postDelay;
+
+	/*
+	 * The estimated finish time by scheduler
+	 */
+	private double estimatedFinishTime;
+
+	/*
+	 * The file transfer time in scheduler
+	 */
+	private double fileTransferTime;
+
 	// //////////////////////////////////////////
 	// Below are CONSTANTS attributes
 	/** The Cloudlet has been created and added to the CloudletList object. */
@@ -1463,4 +1488,43 @@ public class Cloudlet {
 		return getUtilizationModelBw().getUtilization(time);
 	}
 
+	public double getMakespan() {
+		return this.queueDelay + getActualCPUTime() + this.postDelay;
+	}
+
+	public void setMakespan(double makespan) {
+		this.makespan = makespan;
+	}
+
+	public double getQueueDelay() {
+		return queueDelay;
+	}
+
+	public void setQueueDelay(double queueDelay) {
+		this.queueDelay = queueDelay;
+	}
+
+	public double getPostDelay() {
+		return postDelay;
+	}
+
+	public void setPostDelay(double postDelay) {
+		this.postDelay = postDelay;
+	}
+
+	public double getEstimatedFinishTime() {
+		return estimatedFinishTime;
+	}
+
+	public void setEstimatedFinishTime(double estimatedFinishTime) {
+		this.estimatedFinishTime = estimatedFinishTime;
+	}
+
+	public double getFileTransferTime() {
+		return fileTransferTime;
+	}
+
+	public void setFileTransferTime(double fileTransferTime) {
+		this.fileTransferTime = fileTransferTime;
+	}
 }

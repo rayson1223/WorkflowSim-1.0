@@ -645,6 +645,7 @@ public class Datacenter extends SimEntity {
 				} else {
 					// time to transfer the files
 					double fileTransferTime = predictFileTransferTime(cl.getRequiredFiles());
+					cl.setFileTransferTime(fileTransferTime);
 					vm.getCloudletScheduler().cloudletSubmit(cl, fileTransferTime);
 				}
 			} else {// the cloudlet will migrate from one resource to another
@@ -729,6 +730,7 @@ public class Datacenter extends SimEntity {
 			// if this cloudlet is in the exec queue
 			if (estimatedFinishTime > 0.0 && !Double.isInfinite(estimatedFinishTime)) {
 				estimatedFinishTime += fileTransferTime;
+				cl.setEstimatedFinishTime(estimatedFinishTime);
 				send(getId(), estimatedFinishTime, CloudSimTags.VM_DATACENTER_EVENT);
 			}
 

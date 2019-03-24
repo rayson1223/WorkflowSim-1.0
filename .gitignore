@@ -1,0 +1,8 @@
+.idea
+.idea/*
+"JAR MANIFEST"
+"JAR MANIFEST"/*
+META-INF
+META-INF/*
+out
+*.jar

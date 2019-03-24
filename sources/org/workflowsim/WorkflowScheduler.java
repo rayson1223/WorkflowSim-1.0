@@ -255,6 +255,7 @@ public class WorkflowScheduler extends DatacenterBroker {
             if (Parameters.getOverheadParams().getQueueDelay() != null) {
                 delay = Parameters.getOverheadParams().getQueueDelay(cloudlet);
             }
+            cloudlet.setQueueDelay(delay);
             schedule(getVmsToDatacentersMap().get(vmId), delay, CloudSimTags.CLOUDLET_SUBMIT, cloudlet);
         }
         getCloudletList().removeAll(scheduledList);
@@ -289,6 +290,7 @@ public class WorkflowScheduler extends DatacenterBroker {
         double delay = 0.0;
         if (Parameters.getOverheadParams().getPostDelay() != null) {
             delay = Parameters.getOverheadParams().getPostDelay(job);
+            cloudlet.setPostDelay(delay);
         }
         schedule(this.workflowEngineId, delay, CloudSimTags.CLOUDLET_RETURN, cloudlet);
 
